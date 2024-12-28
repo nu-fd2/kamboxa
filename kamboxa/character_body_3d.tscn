@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq8mlkcgxnbs"]
+
+[ext_resource type="Script" path="res://character_body_3d.gd" id="1_s7taj"]
+[ext_resource type="Texture2D" uid="uid://b8r6sgwq21ett" path="res://png-clipart-counter-strike-source-counter-strike-global-offensive-knife-knife-game-hand-removebg-preview.png" id="2_wno5s"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_idn5t"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y0oqh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wno5s")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_s7taj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_idn5t")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+target_position = Vector3(0, 0, -1000)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="gun" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/gun"]
+position = Vector2(8, -122)
+scale = Vector2(0.87931, 0.948468)
+sprite_frames = SubResource("SpriteFrames_y0oqh")
+animation = &"new_animation"
